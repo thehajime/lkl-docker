@@ -15,7 +15,9 @@ RUN sudo apt-get update && \
     sudo apt-get install -y software-properties-common && \
     sudo add-apt-repository ppa:git-core/ppa && \
     sudo apt-get update && \
-    sudo apt-get install -y build-essential bc git xfsprogs ccache btrfs-tools dosfstools python && \
+    sudo apt-get install -y build-essential bc git xfsprogs ccache btrfs-tools \
+    dosfstools python python-pip && \
+    sudo pip install yamlish junit_xml && \
     sudo rm -rf /var/lib/apt/lists/*
 
 ENV PATH ${PATH}:/usr/lib/ccache
