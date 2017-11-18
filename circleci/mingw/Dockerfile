@@ -1,4 +1,4 @@
-FROM lkldocker/circleci:0.1
+FROM lkldocker/circleci:0.2
 MAINTAINER Hajime Tazaki <thehajime@gmail.com>
 
 RUN sudo apt-get update && sudo apt-get install -y wget apt-transport-https
