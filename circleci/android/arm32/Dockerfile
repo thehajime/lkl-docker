@@ -1,4 +1,4 @@
-FROM lkldocker/circleci-android:0.1
+FROM lkldocker/circleci-android:0.2
 MAINTAINER Hajime Tazaki <thehajime@gmail.com>
 
 # install toolchain from NDK
