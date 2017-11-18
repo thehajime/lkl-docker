@@ -18,10 +18,10 @@ TARGETS := circleci circleci-android circleci-android-arm32 \
 # tags in the git log and it makes sure that we kick the docker hub
 # build (pushing just a tag apparently does not work).
 #
-TAG_circleci-x86_64 := 0.1
 TAG_circleci := 0.2
-TAG_circleci-mingw := 0.1
-TAG_circleci-android := 0.1
+TAG_circleci-x86_64 := 0.2
+TAG_circleci-mingw := 0.2
+TAG_circleci-android := 0.2
 TAG_circleci-android-arm32 := 0.1
 TAG_circleci-android-arm64 := 0.1
 
