@@ -22,8 +22,8 @@ TAG_circleci := 0.2
 TAG_circleci-x86_64 := 0.2
 TAG_circleci-mingw := 0.2
 TAG_circleci-android := 0.2
-TAG_circleci-android-arm32 := 0.1
-TAG_circleci-android-arm64 := 0.1
+TAG_circleci-android-arm32 := 0.2
+TAG_circleci-android-arm64 := 0.2
 
 all: $(TARGETS)
 
