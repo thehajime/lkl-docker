@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Hajime Tazaki <thehajime@gmail.com>
+LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
