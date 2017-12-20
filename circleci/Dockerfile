@@ -1,5 +1,14 @@
-FROM ubuntu:14.04.5
+FROM ubuntu:16.04
 MAINTAINER Hajime Tazaki <thehajime@gmail.com>
+
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository ppa:git-core/ppa && \
+    apt-get update && \
+    apt-get install -y sudo build-essential bc git xfsprogs ccache btrfs-tools iputils-ping \
+                       dosfstools python python-pip && \
+    pip install yamlish junit_xml && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash ubuntu && adduser ubuntu sudo && echo -n 'ubuntu:ubuntu' | chpasswd
 
@@ -10,14 +19,5 @@ RUN sed -i.bkp -e \
 
 USER ubuntu
 WORKDIR /home/ubuntu/
-
-RUN sudo apt-get update && \
-    sudo apt-get install -y software-properties-common && \
-    sudo add-apt-repository ppa:git-core/ppa && \
-    sudo apt-get update && \
-    sudo apt-get install -y build-essential bc git xfsprogs ccache btrfs-tools \
-    dosfstools python python-pip && \
-    sudo pip install yamlish junit_xml && \
-    sudo rm -rf /var/lib/apt/lists/*
 
 ENV PATH ${PATH}:/usr/lib/ccache
