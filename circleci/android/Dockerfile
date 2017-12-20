@@ -1,5 +1,5 @@
-FROM lkldocker/circleci:0.2
-MAINTAINER Hajime Tazaki <thehajime@gmail.com>
+FROM lkldocker/circleci:0.3
+LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections && \
     sudo add-apt-repository -y ppa:webupd8team/java && \
@@ -18,7 +18,7 @@ RUN mkdir -p /home/ubuntu/android-sdk && \
     wget -q --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
     unzip -q android-sdk.zip -d android-sdk && \
     rm -f android-sdk.zip && \
-    echo y | ./android-sdk/tools/bin/sdkmanager emulator "platform-tools" "platforms;android-24" 
+    echo y | ./android-sdk/tools/bin/sdkmanager emulator "platform-tools" "platforms;android-24"
 
 COPY circle-android.sh /home/ubuntu/
 
