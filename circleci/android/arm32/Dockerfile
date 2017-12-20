@@ -1,5 +1,5 @@
-FROM lkldocker/circleci-android:0.2
-MAINTAINER Hajime Tazaki <thehajime@gmail.com>
+FROM lkldocker/circleci-android:0.3
+LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 # install toolchain from NDK
 RUN ./android-ndk-r15b/build/tools/make_standalone_toolchain.py --arch arm --api 23 --install-dir ./arm-linux-androideabi && \
