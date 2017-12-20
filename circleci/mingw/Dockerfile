@@ -1,5 +1,5 @@
-FROM lkldocker/circleci:0.2
-MAINTAINER Hajime Tazaki <thehajime@gmail.com>
+FROM lkldocker/circleci:0.3
+LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN sudo apt-get update && sudo apt-get install -y wget apt-transport-https
 
