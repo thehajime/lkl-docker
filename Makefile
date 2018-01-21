@@ -4,7 +4,8 @@
 #
 
 TARGETS := circleci circleci-android circleci-android-arm32 \
-	circleci-android-arm64 circleci-mingw circleci-x86_64
+	circleci-android-arm64 circleci-mingw circleci-x86_64 \
+	circleci-freebsd11-x86_64
 
 #
 # To publish a new tag modify the variables below, commit and then
@@ -24,6 +25,7 @@ TAG_circleci-mingw := 0.3
 TAG_circleci-android := 0.3
 TAG_circleci-android-arm32 := 0.3
 TAG_circleci-android-arm64 := 0.3
+TAG_circleci-freebsd11-x86_64 := 0.1
 
 all: $(TARGETS)
 
@@ -43,6 +45,9 @@ circleci-mingw: circleci/mingw
 	docker build -t lkldocker/$@:$(TAG_$@) $^
 
 circleci-x86_64: circleci/x86_64
+	docker build -t lkldocker/$@:$(TAG_$@) $^
+
+circleci-freebsd11-x86_64: circleci/freebsd11
 	docker build -t lkldocker/$@:$(TAG_$@) $^
 
 tag-%:
