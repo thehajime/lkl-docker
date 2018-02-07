@@ -20,4 +20,4 @@ RUN sed -i.bkp -e \
 USER ubuntu
 WORKDIR /home/ubuntu/
 
-ENV PATH ${PATH}:/usr/lib/ccache
+ENV PATH /usr/lib/ccache:${PATH}
