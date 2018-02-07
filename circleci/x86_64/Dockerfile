@@ -1,4 +1,4 @@
-FROM lkldocker/circleci:0.3
+FROM lkldocker/circleci:0.4
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN sudo apt-get update && \

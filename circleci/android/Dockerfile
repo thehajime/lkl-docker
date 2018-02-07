@@ -1,4 +1,4 @@
-FROM lkldocker/circleci:0.3
+FROM lkldocker/circleci:0.4
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections && \
