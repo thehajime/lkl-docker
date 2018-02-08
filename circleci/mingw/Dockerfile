@@ -10,4 +10,5 @@ RUN sudo dpkg --add-architecture i386 && \
 
 RUN sudo apt-get update && \
     sudo apt-get install -y gcc-mingw-w64-i686 wine && \
+    cd /usr/lib/ccache && sudo ln -s ../../bin/ccache i686-w64-mingw32-gcc && \
     sudo rm -rf /var/lib/apt/lists/*

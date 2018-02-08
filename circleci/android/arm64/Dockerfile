@@ -16,4 +16,7 @@ RUN wget -q https://android-git.linaro.org/platform/prebuilts/gcc/linux-x86/aarc
 RUN echo y | ./android-sdk/tools/bin/sdkmanager "system-images;android-24;default;arm64-v8a" && \
     echo no | ./android-sdk/tools/bin/avdmanager create avd -n Nexus5_API24 -k "system-images;android-24;default;arm64-v8a"
 
+# create ccache link
+RUN cd /usr/lib/ccache && sudo ln -s ../../bin/ccache aarch64-linux-android-gcc
+
 ENV PATH ${PATH}:/home/ubuntu/aarch64-linux-android-5.4-linaro-2016.06/bin

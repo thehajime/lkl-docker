@@ -21,10 +21,10 @@ TARGETS := circleci circleci-android circleci-android-arm32 \
 #
 TAG_circleci := 0.4
 TAG_circleci-x86_64 := 0.6
-TAG_circleci-mingw := 0.4
+TAG_circleci-mingw := 0.5
 TAG_circleci-android := 0.4
-TAG_circleci-android-arm32 := 0.4
-TAG_circleci-android-arm64 := 0.4
+TAG_circleci-android-arm32 := 0.5
+TAG_circleci-android-arm64 := 0.5
 TAG_circleci-freebsd11-x86_64 := 0.2
 
 all: $(TARGETS)
