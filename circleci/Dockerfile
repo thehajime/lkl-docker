@@ -6,7 +6,7 @@ RUN apt-get update && \
     add-apt-repository ppa:git-core/ppa && \
     apt-get update && \
     apt-get install -y sudo build-essential bc git xfsprogs ccache btrfs-tools iputils-ping \
-                       dosfstools python python-pip && \
+                       dosfstools python python-pip bison flex && \
     pip install yamlish junit_xml && \
     rm -rf /var/lib/apt/lists/*
 
