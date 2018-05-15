@@ -25,7 +25,7 @@ TAG_circleci-mingw := 0.6
 TAG_circleci-android := 0.5
 TAG_circleci-android-arm32 := 0.6
 TAG_circleci-android-arm64 := 0.6
-TAG_circleci-freebsd11-x86_64 := 0.3
+TAG_circleci-freebsd11-x86_64 := 0.4
 
 all: $(TARGETS)
 
