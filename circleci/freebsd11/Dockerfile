@@ -95,7 +95,7 @@ ENV MYSCP "/home/ubuntu/sshpass-1.06/sshpass -p password scp \
 
 
 RUN $QEMU && sleep 180 && $MYSSH 'env ASSUME_ALWAYS_YES=YES pkg update' && \
-    $MYSSH 'env ASSUME_ALWAYS_YES=YES pkg install gmake binutils git gcc gnubc coreutils argp-standalone fusefs-libs python ccache py27-pip-9.0.1 sudo bash' && \
+    $MYSSH 'env ASSUME_ALWAYS_YES=YES pkg install gmake binutils git gcc gnubc coreutils argp-standalone fusefs-libs python ccache py27-pip sudo bash' && \
     $MYSSH 'pip install yamlish junit_xml' && \
     $MYSSH 'echo "setenv PATH /usr/local/libexec/ccache:/usr/local/bin:${PATH}" >> /root/.cshrc' && \
     $MYSCP -P 7722 -r root@localhost:/usr/local/include/fuse /freebsd/x86_64-pc-freebsd11/include/ && \
