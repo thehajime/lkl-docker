@@ -20,7 +20,7 @@ TARGETS := circleci circleci-android circleci-android-arm32 \
 # build (pushing just a tag apparently does not work).
 #
 TAG_circleci := 0.5
-TAG_circleci-x86_64 := 0.7
+TAG_circleci-x86_64 := 0.8
 TAG_circleci-i386 := 0.1
 TAG_circleci-mingw := 0.6
 TAG_circleci-android := 0.5
