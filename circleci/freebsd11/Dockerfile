@@ -1,4 +1,4 @@
-FROM lkldocker/circleci:0.5
+FROM thehajime/circleci:0-intermediate
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>"
 
 RUN sudo apt-get update && \
