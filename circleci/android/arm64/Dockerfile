@@ -1,4 +1,7 @@
-FROM lkldocker/circleci-android:0.5
+ARG GIT_ARG
+ENV GIT_ARG ${GIT_ARG:-temp}
+
+FROM lkldocker/circleci-android:$GIT_TAG
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 # install toolchain from NDK
