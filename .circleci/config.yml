@@ -1,0 +1,46 @@
+version: 2
+general:
+  artifacts:
+
+do_steps: &do_steps
+ steps:
+  - checkout
+  - run: echo "export GIT_TAG=${CIRCLE_TAG:=0.1}" >> $BASH_ENV
+  - setup_remote_docker:
+  - run: cd circleci && docker build -t lkldocker/circleci:$GIT_TAG .
+  - run: cd circleci/android && docker build -t lkldocker/circleci-android:$GIT_TAG .
+  - run: cd circleci/android/arm32 && docker build -t lkldocker/circleci-android-arm32:$GIT_TAG .
+  - run: cd circleci/android/arm64 && docker build -t lkldocker/circleci-android-arm64:$GIT_TAG .
+  - run: cd circleci/x86_64 && docker build -t lkldocker/circleci-x86_64:$GIT_TAG .
+  - run: cd circleci/i386 && docker build -t lkldocker/circleci-i386:$GIT_TAG .
+  - run: cd circleci/freebsd11 && docker build -t lkldocker/circleci-freebsd11-x86_64:$GIT_TAG .
+  - run: cd circleci/mingw && docker build -t lkldocker/circleci-mingw:$GIT_TAG .
+  - run: docker images
+    #      no_output_timeout: "90m"
+
+## Customize the test machine
+jobs:
+  docker-build:
+    docker:
+      - image: circleci/node:4.8.2
+    environment:
+    <<: *do_steps
+  deploy:
+    docker:
+      - image: circleci/node:4.8.2
+    environment:
+    steps:
+      - run: echo "deploy"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+     - docker-build
+     - deploy:
+         filters:
+          tags:
+            only: /v.*/
+          branches:
+            ignore: /.*/
+
