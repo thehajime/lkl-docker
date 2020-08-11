@@ -1,4 +1,6 @@
-FROM lkldocker/circleci:0.5
+ARG GIT_ARG
+
+FROM lkldocker/circleci:${GIT_TAG}
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>"
 
 RUN sudo apt-get update && \
