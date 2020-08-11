@@ -33,7 +33,7 @@ RUN wget -q http://ftp.gnu.org/gnu/mpfr/mpfr-3.1.6.tar.xz && tar xfJ mpfr-3.1.6.
 RUN wget -q http://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz && tar xfz mpc-1.0.3.tar.gz -C src
 RUN wget -q http://ftp.gnu.org/gnu/gcc/gcc-6.4.0/gcc-6.4.0.tar.gz && tar xfz gcc-6.4.0.tar.gz -C src
 
-RUN wget -q http://ftp4.us.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/11.1/FreeBSD-11.1-RELEASE-amd64-dvd1.iso && \
+RUN wget -q http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/old-releases/ISO-IMAGES/11.1/FreeBSD-11.1-RELEASE-amd64-dvd1.iso && \
     mkdir -p freebsd && \
     (cd freebsd; 7z x ../FreeBSD-11.1-RELEASE-amd64-dvd1.iso usr/include) && \
     (cd freebsd; 7z x ../FreeBSD-11.1-RELEASE-amd64-dvd1.iso usr/lib) && \
