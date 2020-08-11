@@ -2,7 +2,7 @@ FROM thehajime/circleci:0-intermediate
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections && \
-    sudo add-apt-repository -y ppa:ts.sch.gr/ppa && \
+    sudo add-apt-repository -y ppa:webupd8team/java && \
     sudo apt-get update && \
     sudo apt-get install -y oracle-java8-installer unzip libgl1-mesa-glx libpulse0 && \
     sudo rm -rf /var/lib/apt/lists/* && \
