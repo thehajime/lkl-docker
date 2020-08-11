@@ -1,0 +1,46 @@
+version: 2
+general:
+  artifacts:
+
+do_steps: &do_steps
+ steps:
+  - checkout
+  - run: echo "export GIT_TAG=${CIRCLE_TAG:=temp}" >> $BASH_ENV
+  - setup_remote_docker:
+  - run: cd circleci && docker build -t lkldocker/circleci:$GIT_TAG .
+  - run: cd circleci/android && docker build -t lkldocker/circleci-android:$GIT_TAG .
+  - run: cd circleci/android/arm32 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:$GIT_TAG -t lkldocker/circleci-android-arm32:$GIT_TAG .
+  - run: cd circleci/android/arm64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:$GIT_TAG -t lkldocker/circleci-android-arm64:$GIT_TAG .
+  - run: cd circleci/x86_64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-x86_64:$GIT_TAG .
+  - run: cd circleci/i386 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-i386:$GIT_TAG .
+  - run: cd circleci/freebsd11 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-freebsd11-x86_64:$GIT_TAG .
+  - run: cd circleci/mingw && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-mingw:$GIT_TAG .
+  - run: docker images
+  - run:
+      name: deploy to docker hub
+      command: |
+        if [[ $CIRCLE_BRANCH == master ]]; then
+          if [[ $CIRCLE_PROJECT_USERNAME == lkldocker ]]; then
+            if [[ -n $CIRCLE_TAG ]]; then
+               echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+               docker push lkldocker/circleci:$GIT_TAG
+            fi
+          fi
+        fi
+
+## Customize the test machine
+jobs:
+  docker-build:
+    docker:
+      - image: circleci/node:4.8.2
+    environment:
+    <<: *do_steps
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - docker-build:
+         filters:
+          tags:
+            only: /v.*/
