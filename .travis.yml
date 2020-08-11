@@ -1,0 +1,21 @@
+language: generic
+
+script:
+  - export TRAVIS_TAG=0.1
+  - cd circleci && docker build -t lkldocker/circleci:$TRAVIS_TAG . && cd ..
+  - cd circleci/android && docker build -t lkldocker/circleci-android:$TRAVIS_TAG .
+  - cd arm32 && docker build -t lkldocker/circleci-android-arm32:$TRAVIS_TAG .
+  - cd ../arm64 && docker build -t lkldocker/circleci-android-arm64:$TRAVIS_TAG .
+  - cd ../../x86_64 && docker build -t lkldocker/circleci-x86_64:$TRAVIS_TAG .
+  - cd ../i386 && docker build -t lkldocker/circleci-i386:$TRAVIS_TAG .
+  - cd ../freebsd11 && docker build -t lkldocker/circleci-freebsd11-x86_64:$TRAVIS_TAG .
+  - cd ../mingw && docker build -t lkldocker/circleci-mingw:$TRAVIS_TAG .
+  - docker images
+
+
+deploy:
+   provider: script
+   script: bash -xe deploy.sh
+   on:
+     branch: master
+     condition: $TRAVIS_REPO_SLUG = lkl/lkl-docker
