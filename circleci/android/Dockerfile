@@ -1,4 +1,4 @@
-FROM thehajime/circleci:4.4
+FROM thehajime/circleci:0-intermediate
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections && \
