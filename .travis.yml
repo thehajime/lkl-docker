@@ -1,0 +1,41 @@
+language: c
+cache: ccache
+
+before_script:
+  - export -f travis_fold
+
+script:
+  - export TRAVIS_TAG=0.1
+  - travis_fold start "base-image"
+  - cd circleci && docker build -t lkldocker/circleci:$TRAVIS_TAG . && cd ..
+  - travis_fold end "base-image"
+  - travis_fold start "android-base-image"
+  - cd circleci/android && docker build -t lkldocker/circleci-android:$TRAVIS_TAG .
+  - travis_fold end "android-base-image"
+  - travis_fold start "android-arm32"
+  - cd arm32 && docker build -t lkldocker/circleci-android-arm32:$TRAVIS_TAG .
+  - travis_fold end "android-arm32"
+  - travis_fold start "android-arm64"
+  - cd ../arm64 && docker build -t lkldocker/circleci-android-arm64:$TRAVIS_TAG .
+  - travis_fold end "android-arm64"
+  - travis_fold start "x86_64"
+  - cd ../../x86_64 && docker build -t lkldocker/circleci-x86_64:$TRAVIS_TAG .
+  - travis_fold end "x86_64"
+  - travis_fold start "i386"
+  - cd ../i386 && docker build -t lkldocker/circleci-i386:$TRAVIS_TAG .
+  - travis_fold end "i386"
+  - travis_fold start "freebsd11"
+  - cd ../freebsd11 && docker build -t lkldocker/circleci-freebsd11-x86_64:$TRAVIS_TAG .
+  - travis_fold end "freebsd11"
+  - travis_fold start "mingw"
+  - cd ../mingw && docker build -t lkldocker/circleci-mingw:$TRAVIS_TAG .
+  - travis_fold end "mingw"
+  - docker images
+
+
+deploy:
+   provider: script
+   script: bash -xe deploy.sh
+   on:
+     branch: master
+     condition: $TRAVIS_REPO_SLUG = lkl/lkl-docker
