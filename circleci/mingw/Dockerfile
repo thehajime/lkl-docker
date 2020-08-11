@@ -1,4 +1,4 @@
-FROM lkldocker/circleci:0.5
+FROM lkldocker/circleci:$GIT_TAG
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 RUN sudo apt-get update && sudo apt-get install -y wget apt-transport-https
