@@ -1,0 +1,8 @@
+#cloud-config
+user: lkl
+password: lkl
+sudo: ['ALL=(ALL) NOPASSWD:ALL']
+chpasswd: { expire: False }
+groups: sudo
+ssh_pwauth: True
+shell: /bin/bash
