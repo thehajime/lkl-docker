@@ -1,4 +1,6 @@
-FROM lkldocker/circleci:0.5
+ARG IMAGE_NAME
+
+FROM $IMAGE_NAME
 LABEL authors="Shinichi Awamoto <shinichi.awamoto@gmail.com>"
 
 RUN sudo apt-get update && \

@@ -50,6 +50,12 @@ do_steps: &do_steps
         if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
           cd circleci/android/arm64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:$GIT_TAG -t lkldocker/circleci-android-arm64:$GIT_TAG . && cd ../../..
         fi
+  - run:
+      name: qemu x86_64 image build
+      command: |
+        if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
+          cd circleci/qemu-x86_64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-qemu-x86_64:$GIT_TAG . && cd ../..
+        fi
   - run: docker images
   - run:
       name: deploy to docker hub
@@ -63,6 +69,7 @@ do_steps: &do_steps
              fi
              if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
                 docker push lkldocker/circleci-x86_64:$GIT_TAG
+                docker push lkldocker/circleci-qemu-x86_64:$GIT_TAG
                 docker push lkldocker/circleci-i386:$GIT_TAG
                 docker push lkldocker/circleci-mingw:$GIT_TAG
                 docker push lkldocker/circleci-android:$GIT_TAG
