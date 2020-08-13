@@ -54,23 +54,21 @@ do_steps: &do_steps
   - run:
       name: deploy to docker hub
       command: |
-        if [[ $CIRCLE_BRANCH == master ]]; then
-          if [[ $CIRCLE_PROJECT_USERNAME == lkldocker ]]; then
-            if [[ -n $CIRCLE_TAG ]]; then
-               echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-               if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
-                  docker push lkldocker/circleci:$GIT_TAG
-                  docker push lkldocker/circleci-freebsd11-x86_64:$GIT_TAG
-               fi
-               if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
-                  docker push lkldocker/circleci-x86_64:$GIT_TAG
-                  docker push lkldocker/circleci-i386:$GIT_TAG
-                  docker push lkldocker/circleci-mingw:$GIT_TAG
-                  docker push lkldocker/circleci-android:$GIT_TAG
-                  docker push lkldocker/circleci-android-arm32:$GIT_TAG
-                  docker push lkldocker/circleci-android-arm64:$GIT_TAG
-               fi
-            fi
+        if [[ -n $CIRCLE_TAG ]]; then
+          if [[ $CIRCLE_PROJECT_USERNAME == lkl ]]; then
+             docker login -u "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
+             if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
+                docker push lkldocker/circleci:$GIT_TAG
+                docker push lkldocker/circleci-freebsd11-x86_64:$GIT_TAG
+             fi
+             if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
+                docker push lkldocker/circleci-x86_64:$GIT_TAG
+                docker push lkldocker/circleci-i386:$GIT_TAG
+                docker push lkldocker/circleci-mingw:$GIT_TAG
+                docker push lkldocker/circleci-android:$GIT_TAG
+                docker push lkldocker/circleci-android-arm32:$GIT_TAG
+                docker push lkldocker/circleci-android-arm64:$GIT_TAG
+             fi
           fi
         fi
 
