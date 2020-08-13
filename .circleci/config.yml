@@ -8,25 +8,25 @@ do_steps: &do_steps
   - run: echo "export GIT_TAG=${CIRCLE_TAG:=temp}" >> $BASH_ENV
   - setup_remote_docker:
   - run: cd circleci && docker build -t lkldocker/circleci:$GIT_TAG . && cd ..
-  - run: 
+  - run:
       name: freebsd image build
       command: |
         if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
           cd circleci/freebsd11 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-freebsd11-x86_64:$GIT_TAG . && cd ../..
         fi
-  - run: 
+  - run:
       name: x86_64 image build
       command: |
         if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
           cd circleci/x86_64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-x86_64:$GIT_TAG . && cd ../..
         fi
-  - run: 
+  - run:
       name: i386 image build
       command: |
         if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
           cd circleci/i386 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-i386:$GIT_TAG . && cd ../..
         fi
-  - run: 
+  - run:
       name: mingw image build
       command: |
         if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
