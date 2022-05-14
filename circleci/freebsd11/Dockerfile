@@ -21,8 +21,8 @@ WORKDIR /home/ubuntu/
 RUN wget -q http://www.iijlab.net/~tazaki/outgoing/FreeBSD-11.1-RELEASE-amd64.qcow2.xz && \
     unxz FreeBSD-11.1-RELEASE-amd64.qcow2.xz
 
-RUN wget -q http://fossies.org/linux/privat/sshpass-1.06.tar.gz && \
-    tar xzf sshpass-1.06.tar.gz && cd sshpass-1.06 && ./configure && make
+RUN wget -q http://fossies.org/linux/privat/sshpass-1.09.tar.gz && \
+    tar xzf sshpass-1.09.tar.gz && cd sshpass-1.09 && ./configure && make
 
 ## Note: building LKL code on qemu (w/o kvm) takes almost forever, around 3hrs in circleci.
 ## So we build own cross-build chain for FreeBSD.
@@ -88,11 +88,11 @@ ENV QEMU "qemu-system-x86_64 -m 2048 \
      -netdev user,id=mynet0,hostfwd=tcp:127.0.0.1:7722-:22 \
      -device e1000,netdev=mynet0 -display none -daemonize"
 
-ENV MYSSH "/home/ubuntu/sshpass-1.06/sshpass -p password ssh \
+ENV MYSSH "/home/ubuntu/sshpass-1.09/sshpass -p password ssh \
     -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
     -q root@localhost -p7722"
 
-ENV MYSCP "/home/ubuntu/sshpass-1.06/sshpass -p password scp \
+ENV MYSCP "/home/ubuntu/sshpass-1.09/sshpass -p password scp \
     -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -q"
 
 

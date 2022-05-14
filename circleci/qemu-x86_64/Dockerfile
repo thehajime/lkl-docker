@@ -13,8 +13,8 @@ RUN sudo cp /boot/initrd.img-4.15.0-112-generic .
 
 RUN sudo chown ubuntu:ubuntu vmlinuz-4.15.0-112-generic initrd.img-4.15.0-112-generic
 
-RUN wget -q http://fossies.org/linux/privat/sshpass-1.06.tar.gz && \
-    tar xzf sshpass-1.06.tar.gz && cd sshpass-1.06 && ./configure && make
+RUN wget -q http://fossies.org/linux/privat/sshpass-1.09.tar.gz && \
+    tar xzf sshpass-1.09.tar.gz && cd sshpass-1.09 && ./configure && make
 
 RUN wget https://download.qemu.org/qemu-5.0.0.tar.xz && \
     tar xf qemu-5.0.0.tar.xz && \
@@ -43,9 +43,9 @@ ENV QEMU "qemu-system-x86_64 -m 2048 -machine q35,kernel-irqchip=split\
      -append 'root=LABEL=cloudimg-rootfs ro intel_iommu=on console=tty1 console=ttyS0'\
      -display none -serial mon:telnet::5555,server,nowait -daemonize"
 
-ENV MYSSH "/home/ubuntu/sshpass-1.06/sshpass -p lkl ssh \
+ENV MYSSH "/home/ubuntu/sshpass-1.09/sshpass -p lkl ssh \
     -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
     -q lkl@localhost -p2222"
 
-ENV MYSCP "/home/ubuntu/sshpass-1.06/sshpass -p lkl scp \
+ENV MYSCP "/home/ubuntu/sshpass-1.09/sshpass -p lkl scp \
     -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -q -P 2222"
