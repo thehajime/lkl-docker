@@ -25,12 +25,13 @@ RUN wget https://download.qemu.org/qemu-5.0.0.tar.xz && \
     cd .. && \
     rm -rf qemu-5.0.0 qemu-5.0.0.tar.xz
 
-RUN wget -q https://cloud-images.ubuntu.com/releases/bionic/release/ubuntu-18.04-server-cloudimg-amd64.img && \
+RUN wget -q http://cloud-images-archive.ubuntu.com/releases/bionic/release-20200807/ubuntu-18.04-server-cloudimg-amd64.img && \
     qemu-img resize ubuntu-18.04-server-cloudimg-amd64.img 10G
 
 RUN dd if=/dev/zero of=nvme.img bs=1024 count=102400
 
 COPY cloud.txt .
+RUN sudo chmod a+r cloud.txt
 RUN cloud-localds cloud.img cloud.txt
 
 ENV QEMU "qemu-system-x86_64 -m 2048 -machine q35,kernel-irqchip=split\
