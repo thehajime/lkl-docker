@@ -13,7 +13,7 @@ RUN sudo cp /boot/initrd.img-4.15.0-112-generic .
 
 RUN sudo chown ubuntu:ubuntu vmlinuz-4.15.0-112-generic initrd.img-4.15.0-112-generic
 
-RUN wget -q http://fossies.org/linux/privat/sshpass-1.09.tar.gz && \
+RUN wget -O sshpass-1.09.tar.gz -q  https://sourceforge.net/projects/sshpass/files/sshpass/1.09/sshpass-1.09.tar.gz/download && \
     tar xzf sshpass-1.09.tar.gz && cd sshpass-1.09 && ./configure && make
 
 RUN wget https://download.qemu.org/qemu-5.0.0.tar.xz && \

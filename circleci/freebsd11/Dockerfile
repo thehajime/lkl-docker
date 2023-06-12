@@ -21,7 +21,7 @@ WORKDIR /home/ubuntu/
 RUN wget -q http://www.iijlab.net/~tazaki/outgoing/FreeBSD-11.1-RELEASE-amd64.qcow2.xz && \
     unxz FreeBSD-11.1-RELEASE-amd64.qcow2.xz
 
-RUN wget -q http://fossies.org/linux/privat/sshpass-1.09.tar.gz && \
+RUN wget -O sshpass-1.09.tar.gz -q  https://sourceforge.net/projects/sshpass/files/sshpass/1.09/sshpass-1.09.tar.gz/download && \
     tar xzf sshpass-1.09.tar.gz && cd sshpass-1.09 && ./configure && make
 
 ## Note: building LKL code on qemu (w/o kvm) takes almost forever, around 3hrs in circleci.
